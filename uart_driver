@@ -1,0 +1,24 @@
+// uart_driver.c
+// Basic UART driver for demo purposes
+
+#define UART_BASE_ADDR  0x80001000
+#define UART_TX_REG     (*(volatile unsigned int*)(UART_BASE_ADDR + 0x00))
+#define UART_STATUS_REG (*(volatile unsigned int*)(UART_BASE_ADDR + 0x04))
+
+void uart_init(void) {
+    // Basic initialization placeholder
+}
+
+void uart_send_char(char c) {
+    // Wait until transmitter is ready
+    while ((UART_STATUS_REG & 0x01) == 0) {
+        // busy wait
+    }
+    UART_TX_REG = (unsigned int)c;
+}
+
+void uart_send_string(const char* str) {
+    while (*str) {
+        uart_send_char(*str++);
+    }
+}
