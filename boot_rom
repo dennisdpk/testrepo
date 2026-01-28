@@ -1,0 +1,21 @@
+// boot_rom.c
+// Minimal boot firmware for processor startup
+
+void uart_init(void);
+void uart_send_string(const char* str);
+
+void system_init(void) {
+    // Placeholder for clock, memory, and CPU init
+}
+
+int main(void) {
+    system_init();
+    uart_init();
+
+    uart_send_string("Boot ROM started\n");
+
+    // Jump to main application (not implemented in demo)
+    while (1) {
+        // idle loop
+    }
+}
